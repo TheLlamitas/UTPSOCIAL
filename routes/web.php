@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,5 @@ Route::get('/', function () {
     return view('principal');
 });
 
-Route::get('/nosotros', function () {
-    return view('nosotros');
-});
+Route::get('/crear-cuenta', [AuthController::class, 'index']);
 
-Route::get('/tienda', function () {
-    return view('tienda');
-});

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Nosotros
+    Regístrate
 @endsection
 
 @section('contenido')
-    Sobre nosotros
+    <p>Todo lo relacionado a la página principal</p>
 @endsection
