@@ -28,6 +28,9 @@
                         placeholder="Tu Nombre"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('name')
+                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="username" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -40,6 +43,9 @@
                         placeholder="Tu Username"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('username')
+                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -52,6 +58,9 @@
                         placeholder="Tu Correo electronico"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('email')
+                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -64,6 +73,9 @@
                         placeholder="Tu Contraseña"
                         class="border p-3 w-full rounded-lg"
                     >
+                    @error('password')
+                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -87,7 +99,7 @@
     </div>
     <div class="md:flex md:justify-center md:items-center mt-10">
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-2xl">
-            <h2 class="text-center">¿Tienes una cuenta? <a class=" text-blue-600" href="/login">Inicia sesion</a></h2>
+            <h2 class="text-center">¿Tienes una cuenta? <a class=" text-blue-600" href="{{ route('login') }}">Inicia sesion</a></h2>
         </div>
     </div>
 @endsection
