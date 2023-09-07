@@ -26,7 +26,7 @@
                         name="name"
                         type="text"
                         placeholder="Tu Nombre"
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
                     >
                     @error('name')
                         <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
@@ -41,7 +41,7 @@
                         name="username"
                         type="text"
                         placeholder="Tu Username"
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('username') border-red-500 @enderror"
                     >
                     @error('username')
                         <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
@@ -56,7 +56,7 @@
                         name="email"
                         type="email"
                         placeholder="Tu Correo electronico"
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror"
                     >
                     @error('email')
                         <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
@@ -71,7 +71,7 @@
                         name="password"
                         type="password"
                         placeholder="Tu Contraseña"
-                        class="border p-3 w-full rounded-lg"
+                        class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
                     >
                     @error('password')
                         <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
