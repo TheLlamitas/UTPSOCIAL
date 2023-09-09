@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class RegisterRequest extends FormRequest
             'name' => 'required|max:50',
             'username' => 'required|unique:users',
             'email' => 'required|unique:users',
-            'password' => 'required|min:6',
+            'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
 
@@ -35,7 +36,14 @@ class RegisterRequest extends FormRequest
     {
         return[
             'name.required' => 'El nombre es obligatorio.',
-            'name.max' => 'Supero la máxima cantidad de caracteres.'
+            'name.max' => 'Supero la máxima cantidad de caracteres.',
+            'username.required' => 'El username es obligatorio.',
+            'username.unique' => 'El username ya esta en uso.',
+            'email.required' => 'El email es obligatorio.',
+            'email.unique' => 'El email ya esta en uso.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.'
         ];
     }
 }

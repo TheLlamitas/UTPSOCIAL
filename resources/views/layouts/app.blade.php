@@ -14,8 +14,20 @@
                     UTP Social
                 </h1>
                 <nav class="flex gap-2 items-center">
-                   <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">Regístrate</a>
+                    @if (Route::has('login') && Auth::check())
+                        <a class="text-gray-600 text-sm" href="#">
+                            Hola, {{ auth()->user()->username }}
+                        </a>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm">
+                                Cerrar Sesión
+                            </button>
+                        </form>
+                    @elseif(Route::has('login') && !Auth::check())
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">Regístrate</a>
+                    @endif
                 </nav>
             </div>
         </header>
