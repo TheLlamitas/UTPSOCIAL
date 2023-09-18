@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -27,7 +28,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::middleware(['auth', 'auth.session'])->group(function () {
-    Route::get('/{user:username}', [PostController::class, 'index'])->name('post');
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::get('/edit-profile', [UserController::class, 'index'])->name('profile.index');
+    Route::post('/edit-profile', [UserController::class, 'store'])->name('profile.store');
+    Route::get('/{user:username}', [PostController::class, 'index'])->name('post');
 });
 
