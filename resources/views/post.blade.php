@@ -5,10 +5,10 @@
         <div class="md:w-8/12 lg:w-8/12 w-full flex flex-col items-center md:flex-row">
             <div class="grid sm:grid-cols-1 grid-cols-3 w-full md:w-4/12 lg:w-4/12 items-center">
                 <div class="p-3">
-                    @if ($user->id === auth()->user()->id)
-                        <img class="rounded-full sm:h-40 h-20 m-auto" src="{{ asset('img/user.jpg') }}" alt="Imagen de perfil">
+                    @if(isset($user->image))
+                        <img class="rounded-full sm:h-40 h-20 m-auto" src="{{ asset($user->image) }}" alt="Imagen de perfil">
                     @else
-                        <img class="rounded-full sm:h-40 h-20 m-auto" src="{{ asset('img/user2.png') }}" alt="Imagen de perfil">
+                        <img class="rounded-full sm:h-40 h-20 m-auto" src="{{ asset('img/no-photo.jpg') }}" alt="Imagen de perfil">
                     @endif
                 </div>
                 <div class="pl-2 pr-6 text-start jus sm:hidden block col-span-2">

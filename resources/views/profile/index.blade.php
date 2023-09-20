@@ -4,7 +4,7 @@
     
 <div class="md:flex md:justify-center md:items-center">
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-2xl">
-        <div class="md:flex md:justify-center hidden sm:block">
+        <div class="flex justify-center">
             <img class="max-h-20 rounded-full" src="{{ asset('img/user.jpg') }}" alt="image profile">
         </div>
         <h2 class="mb-5 mt-5 text-gray-600 font-bold font-sans text-center">

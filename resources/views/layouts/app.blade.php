@@ -7,7 +7,7 @@
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
     </head>
-    <body class=" bg-gray-100">
+    <body class="bg-gray-100">
         <header class="sm:p-5 p-3 border-b bg-white shadow">
             <div class="sm:container sm:mx-auto mx-0 flex justify-between items-center">
                 <img class="max-h-10" src="{{ asset('img/utp.png') }}" alt="Logo UTP">
@@ -16,7 +16,7 @@
                 </h1>
                 <nav class="flex gap-2 items-center">
                     @if (Route::has('login') && Auth::check())
-                        <a class="text-gray-600 text-sm" href="#">
+                        <a class="text-gray-600 text-sm" href="{{ route('post', auth()->user()->username) }}">
                             Hola, {{ auth()->user()->username }}
                         </a>
                         <form action="{{ route('logout') }}" method="post">

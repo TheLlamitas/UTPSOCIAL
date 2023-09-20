@@ -12,6 +12,9 @@ use App\Http\Requests\Auth\RegisterRequest;
 class RegisterController extends Controller
 {
     public function index() {
+        if(Auth::check()){
+            return redirect()->route('post', auth()->user()->username);
+        }
         return view('auth.register');
     }
 

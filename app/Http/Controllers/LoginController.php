@@ -9,6 +9,9 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if(Auth::check()){
+            return redirect()->route('post', auth()->user()->username);
+        }
         return view('auth.login');
     }
 
