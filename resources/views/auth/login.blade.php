@@ -1,6 +1,6 @@
 <x-layout title="Iniciar Sesión">
     <x-card-main text="Ingresa para ver fotos y vídeos de tus amigos.">
-        <x-forms.form route="{{ route('login') }}" method="POST" status="warning">
+        <x-forms.form route="{{ route('login') }}" method="POST">
             <x-forms.input name="email" title="Email" placeholder="Tu Correo electronico" type="email"/>
             <x-forms.input name="password" title="Contraseña" placeholder="Tu Contraseña" type="password"/>
             <x-forms.input-button type="submit" value="Iniciar Sesión"/>

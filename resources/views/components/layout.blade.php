@@ -9,8 +9,8 @@
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
     </head>
-    <body class="bg-gray-100">
-        <header class="sm:p-5 p-3 border-b bg-white shadow">
+    <body class="bg-white h-screen flex flex-col">
+        <header class="sm:p-5 px-4 border-b bg-white shadow">
             <div class="sm:container sm:mx-auto mx-0 flex justify-between items-center">
                 <img class="max-h-10" src="{{ asset('img/utp.png') }}" alt="Logo UTP">
                 <h1 class="text-3xl font-black hidden sm:block">
@@ -21,7 +21,7 @@
                         <a class="text-gray-600 text-sm" href="{{ route('post', auth()->user()->username) }}">
                             Hola, {{ auth()->user()->username }}
                         </a>
-                        <form action="{{ route('logout') }}" method="post">
+                        <form class="m-auto" action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="font-bold uppercase text-gray-600 text-sm">
                                 Cerrar Sesión
@@ -34,11 +34,13 @@
                 </nav>
             </div>
         </header>
-        <main class="sm:container sm:mx-auto mx-0 sm:mt-10 mt-3">
-            <h2 class="font-black text-center text-3xl sm:mb-10">{{ $title }}</h2>
+        <main class="sm:container sm:mx-auto mx-0 flex-grow">
+            @isset($title)
+                <h2 class="font-black text-center text-3xl sm:mb-10"> {{ $title }} </h2>
+            @endisset
             {{ $slot }}
         </main>
-        <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
+        <footer class="text-sm text-center p-5 text-gray-500 font-bold uppercase">
             Todos los derechos reservados {{ now()->year }}
         </footer>
     </body>

@@ -8,6 +8,7 @@
         type="{{ $type }}"
         placeholder="{{ $placeholder }}"
         class="border p-3 w-full rounded-lg @error($name) border-red-500 @enderror"
+        value="@isset($value){{ $value }}@endisset"
     >
     @error($name)
         <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
