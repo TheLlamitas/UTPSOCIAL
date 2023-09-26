@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-4 items-center py-3 px-4 sm:px-0 border-t-2 sm:border-t-0">
-                    <x-div-count count="0" text="publicaciones"/>
+                    <x-div-count :count="$posts->count()" text="publicaciones"/>
                     <x-div-count count="1K" text="seguidores"/>
                     <x-div-count count="10" text="seguidos"/>
                 </div>

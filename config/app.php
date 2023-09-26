@@ -194,7 +194,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class
+        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
     ],
 
     /*
@@ -211,6 +213,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class,
     ])->toArray(),
 
 ];

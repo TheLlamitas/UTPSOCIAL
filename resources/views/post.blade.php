@@ -1,5 +1,8 @@
-<x-layout>
-    <x-div-profile :user="$user"/>
+<x-layout :titlePage="$user->name">
+    <x-div-profile :user="$user" :posts="$posts"/>
+    @error('file')
+        <p class=" bg-orange-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
+    @enderror
     <x-div-ul>
         <x-forms.li tagName="tabs-publications" text="Publicaciones" selected="true" dataActive="data-te-nav-active">
             @mobile
@@ -30,9 +33,22 @@
     <!--Tabs content-->
     <div class="mb-6">
         <x-tab-content tabName="tabs-publications" dataActive="data-te-tab-active" class="opacity-100">
-            <x-div-nothing-to-show src="{{ asset('img/publication.png') }}" alt="image saved" textH1="Comparte fotos" textP="Cuando compartas fotos, aparecerán en tu perfil.">
-                <a class="text-sm text-sky-600 hover:text-sky-950 font-semibold" href="#">Comparte tu primera foto</a>
-            </x-div-nothing-to-show>
+            @if ($posts->count())
+                @foreach ($posts as $post)
+                    <x-div-post alt="gallery" src="{{ asset('uploads').'/'.$post->photo }}"/>
+                @endforeach
+            @else
+                @if ($user->id == auth()->user()->id)
+                    <x-div-nothing-to-show src="{{ asset('img/publication.png') }}" alt="image saved" textH1="Comparte fotos" textP="Cuando compartas fotos, aparecerán en tu perfil.">
+                        <a class="openModal text-sm text-sky-600 hover:text-sky-950 font-semibold cursor-pointer" type="button">
+                            Comparte tu primera foto
+                        </a>
+                    </x-div-nothing-to-show>
+                @else
+                    <x-div-nothing-to-show src="{{ asset('img/publication.png') }}" alt="image saved" textH1="Aún no hay publicaciones" textP=""/>
+                @endif
+            @endif
+            
         </x-tab-content>
         <x-tab-content tabName="tabs-saved" class="opacity-0">
             <x-div-nothing-to-show src="{{ asset('img/saved.png') }}" alt="image saved" textH1="Guardar" textP="Guarda fotos y videos que quieras volver a ver. Nadie recibirá una notificación y solo tú podrás ver lo que guardaste."/>
