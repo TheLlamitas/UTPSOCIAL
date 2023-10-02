@@ -38,7 +38,7 @@
                 </nav>
             </div>
         </header>
-        <main class="sm:container sm:mx-auto mx-0 flex-grow">
+        <main class="sm:container 2xl:max-w-7xl sm:mx-auto mx-0 flex-grow">
             @isset($title)
                 <h2 class="font-black text-center text-3xl sm:mb-10 mt-5"> {{ $title }} </h2>
             @endisset

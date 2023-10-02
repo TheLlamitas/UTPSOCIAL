@@ -1,4 +1,4 @@
-<form action="{{ $route }}" method="{{ $method }}" enctype="@isset($enctype){{ $enctype }}@endisset" novalidate>
+<form id="@isset($id){{ $id }}@endisset" class="my-0" action="{{ $route }}" method="{{ $method }}" enctype="@isset($enctype){{ $enctype }}@endisset" novalidate>
     @csrf
     <x-forms.alert-session status="success" class="bg-green-500"/>
     <x-forms.alert-session status="warning" class="bg-orange-500"/>

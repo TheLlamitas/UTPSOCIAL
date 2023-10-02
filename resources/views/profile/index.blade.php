@@ -1,4 +1,4 @@
-<x-layout titlePage="Editar perfil">
+<x-layout titlePage="Editar perfil" title="">
     <div class="md:flex md:justify-center md:items-center">
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-2xl">
             <div class="flex justify-center">

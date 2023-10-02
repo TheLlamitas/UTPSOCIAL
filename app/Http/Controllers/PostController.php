@@ -14,17 +14,14 @@ class PostController extends Controller
 {
     public function index(User $user)
     {
-        $posts = $user->posts;
+        $posts = $user->posts()->orderBy('updated_at', 'DESC')->get();
         return view('post', ['user' => $user, 'posts' => $posts]);
     }
 
     public function store(PostStoreRequest $request)
     {
         try {
-            $image = Post::storeImage($request);
             $data = $request->all();
-            $data['photo'] = $image->basename;
-            
             Post::saveOrUpdate($data);
 
             return redirect()->route('post', auth()->user()->username);

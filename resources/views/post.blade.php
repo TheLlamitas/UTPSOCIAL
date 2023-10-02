@@ -1,8 +1,10 @@
 <x-layout :titlePage="$user->name">
     <x-div-profile :user="$user" :posts="$posts"/>
-    @error('file')
+    <x-forms.alert/>
+    {{-- @error('file')
         <p class=" bg-orange-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
-    @enderror
+        <x-forms.alert/>
+    @enderror --}}
     <x-div-ul>
         <x-forms.li tagName="tabs-publications" text="Publicaciones" selected="true" dataActive="data-te-nav-active">
             @mobile

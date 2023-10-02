@@ -32,6 +32,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::get('/edit-profile', [UserController::class, 'index'])->name('profile.index');
     Route::post('/edit-profile', [UserController::class, 'store'])->name('profile.store');
     Route::post('/store', [PostController::class, 'store'])->name('store');
+    Route::post('/crop-image', [PostController::class, 'cropImage']);
     Route::get('/{user:username}', [PostController::class, 'index'])->name('post');
 });
 
