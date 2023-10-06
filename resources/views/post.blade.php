@@ -34,15 +34,15 @@
     </x-div-ul>
     <!--Tabs content-->
     <div class="mb-6">
-        <x-tab-content tabName="tabs-publications" dataActive="data-te-tab-active" class="opacity-100">
+        <x-tab-content tabName="tabs-publications" dataActive="data-te-tab-active" class="opacity-100 container-posts">
             @if ($posts->count())
                 @foreach ($posts as $post)
-                    <x-div-post alt="gallery" src="{{ asset('uploads').'/'.$post->photo }}"/>
+                    <x-div-post alt="gallery" :post="$post" userId="{{ auth()->user()->id }}"/>
                 @endforeach
             @else
                 @if ($user->id == auth()->user()->id)
                     <x-div-nothing-to-show src="{{ asset('img/publication.png') }}" alt="image saved" textH1="Comparte fotos" textP="Cuando compartas fotos, aparecerán en tu perfil.">
-                        <a class="openModal text-sm text-sky-600 hover:text-sky-950 font-semibold cursor-pointer" type="button">
+                        <a class="openModalStorePost text-sm text-sky-600 hover:text-sky-950 font-semibold cursor-pointer" type="button">
                             Comparte tu primera foto
                         </a>
                     </x-div-nothing-to-show>
@@ -59,4 +59,13 @@
             <x-div-nothing-to-show src="{{ asset('img/target.png') }}" alt="image saved" textH1="Fotos en las que apareces" textP="Cuando las personas te etiqueten en fotos, aparecerán aquí."/>
         </x-tab-content>
     </div>
+    @if (Auth::check())
+        <x-div-modal id="storePost" classButton="closeModalStorePost">
+            <x-content-modal-post-store/>
+        </x-div-modal>
+
+        <x-div-modal id="showPost" classButton="closeModalshowPost">
+            <x-content-modal-post-show :user="$user"/>
+        </x-div-modal>
+    @endif
 </x-layout>
