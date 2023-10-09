@@ -22,7 +22,7 @@
         <!-- the first file input -->
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
         <div class="flex w-full h-full">
-            <div id="dropzone-container" class="flex items-center justify-center w-full h-full min-[576px]:max-w-[400px] min-[992px]:max-w-[704px] min-[992px]:max-h-[704px]">
+            <div id="dropzone-container" class="flex items-center justify-center w-full h-full min-[576px]:max-w-[576px] min-[992px]:max-w-[704px] min-[992px]:max-h-[704px]">
                 <label id="step1" for="dropzone-file" class="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="block">
                         <x-div-nothing-to-show src="{{ asset('img/galery.png') }}" alt="image saved" textH1="" textP="Selecciona las fotos y los videos aquí"/>
@@ -45,7 +45,16 @@
                     </div>
                 </div>
                 <div class="mt-2">
-                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Escribe una descripción..."></textarea>
+                    <textarea id="descriptionTextarea" name="description" rows="5" class="resize-none block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 border-none focus:outline-none focus:ring-0 border-transparent" placeholder="Escribe una descripción..."></textarea>
+                    <div id="contentEmoji" class="flex justify-between border-b border-gray-200 m-1 mr-2 items-center">
+                        <div class="p-2">
+                            <x-icons.emoji id="openEmoji"/>
+                        </div>
+                        <div id="countDescription" class="text-gray-400 text-sm">
+                            0/191
+                        </div>
+                    </div>
+                    <div id="emoji" class="hidden"></div>
                 </div>
             </div>
         </div>
@@ -54,3 +63,6 @@
         </div>
     </x-forms.form>
 </div>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+@endpush

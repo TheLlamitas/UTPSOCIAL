@@ -3,27 +3,79 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalShowPost = document.getElementById('showPost');
     const input = document.getElementById('dropzone-file');
     const nextButton = document.getElementById('next-a');
-    const modalAll = document.getElementById('modal-all');
-    const description = document.getElementById('description');
-    const storePostForm = document.getElementById('store-post');
+    const description = modalStorePost.querySelector('#description');
+    const descriptionTextarea = modalStorePost.querySelector('#descriptionTextarea');
+    const divEmoji = modalStorePost.querySelector('#emoji');
 
-    document.querySelector('.openModalStorePost').addEventListener('click', function(element) {
-        toggleModal(modalStorePost, 'invisible', false);
-        //modalStorePost.classList.toggle('invisible');
+    document.querySelectorAll('.openModalStorePost').forEach(function (element) {
+        element.addEventListener('click', function() {
+            toggleModal(modalStorePost, 'invisible', false);
+        });
     });
 
     document.querySelector('.closeModalStorePost').addEventListener('click', function(element) {
         toggleModal(modalStorePost, 'invisible', true);
-        location.reload();//pendiente revisar
     });
 
     document.querySelector('.container-posts').addEventListener('click', (event) => {
-        showPostModal(event.target);
+        if (event.target.classList.contains('openModalStorePost')) {
+            toggleModal(modalStorePost, 'invisible', false);
+        } else {
+            showPostModal(event.target);   
+        }
     });
 
     document.querySelector('.closeModalshowPost').addEventListener('click', (event) => {
         toggleModal(modalShowPost, 'invisible', true);
-    })
+    });
+
+    // Agregar un evento de entrada al textarea
+    descriptionTextarea.addEventListener('input', function() {
+        countCharacter(); 
+    });
+
+    function countCharacter() {
+        // Obtener el contenido del textarea
+        let content = descriptionTextarea.value;
+        const countDescription = document.getElementById('countDescription');
+        // Limitar la longitud del contenido a 191 caracteres
+        countDescription.textContent = content.length+'/191';
+        if (content.length > 191) {
+            descriptionTextarea.value = content.substring(0, 191);
+            countDescription.textContent = (content.length - 1)+'/191';
+        }
+    }
+
+    document.querySelector('#openEmoji').addEventListener('click', function(element) {
+        divEmoji.innerHTML="";
+        const pickerOptions = { 
+            set: 'native', // Estilo de emojis (puedes usar 'apple' o 'twitter' si prefieres)
+            locale: 'es',
+            previewPosition: 'none',
+            searchPosition: 'none',
+            navPosition: 'bottom',
+            emojiSize: '18',
+            categories: 'frequent, activity, nature, foods, objects, people, symbols, places',
+            onEmojiSelect: emoji => {
+                console.log(descriptionTextarea.value.length);
+                descriptionTextarea.value = descriptionTextarea.value+emoji.native;
+                countCharacter();
+                divEmoji.innerHTML="";
+                toggleModal(divEmoji, 'hidden', true);
+            },
+         }
+        const picker = new EmojiMart.Picker(pickerOptions);
+        divEmoji.appendChild(picker);
+        toggleModal(divEmoji, 'hidden', false);
+    });
+
+    // Cerrar el modal cuando se hace clic fuera de él
+    document.addEventListener('click', function(event) {
+        if (event.target !== divEmoji && !divEmoji.contains(event.target) && event.target !== document.getElementById('openEmoji')) {
+            toggleModal(divEmoji, 'hidden', true);
+            divEmoji.innerHTML="";
+        }
+    });
 
     if (input) {
         input.addEventListener('change', handleFileUpload);
@@ -34,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     nextButton.addEventListener('click', function(event) {
+        let modalAll = modalStorePost.querySelector('#modal-all');
+        const storePostForm = document.getElementById('store-post');
         modalAll.style.minWidth = '992px';
         modalAll.style.maxWidth = '1095px';
         toggleModal(description, 'hidden', false);
@@ -155,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let width;
                 let height;
 
-                if (window.innerWidth <= 767) {
+                if (window.innerWidth <= 710) {
                     width = 400;
                     height = 400;
                 } else {

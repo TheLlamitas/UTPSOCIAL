@@ -3,7 +3,7 @@
             <img
                 alt="{{ $alt }}"
                 data-id="{{ $post->id }}" data-url="{{ asset('uploads').'/'.$post->photo }}" data-description="{{ $post->description }}" data-created-at="{{ $post->created_at }}" data-userId="{{ $userId }}"
-                class="block h-full w-full object-cover object-center"
+                class="block h-full w-full object-cover object-center cursor-pointer"
                 src="{{ asset('uploads').'/'.$post->photo }}" />
     </div>
 </div>

@@ -9,7 +9,6 @@
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
         @vite('resources/js/modals.js')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body class="bg-white h-screen flex flex-col">
         <header class="sm:p-5 px-4 border-b bg-white shadow">
@@ -44,7 +43,11 @@
                 <h2 class="font-black text-center text-3xl sm:mb-10 mt-5"> {{ $title }} </h2>
             @endisset
             {{ $slot }}
-            
+            @if (Auth::check())
+                <x-div-modal id="storePost" classButton="closeModalStorePost">
+                    <x-content-modal-post-store/>
+                </x-div-modal>
+            @endif
         </main>
         <footer class="text-sm text-center sm:p-5 text-gray-500 font-bold uppercase">
             @if (Auth::check())
@@ -60,5 +63,6 @@
                 Todos los derechos reservados {{ now()->year }}
             @endif
         </footer>
+        @stack('scripts')
     </body>
 </html>

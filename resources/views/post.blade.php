@@ -60,10 +60,6 @@
         </x-tab-content>
     </div>
     @if (Auth::check())
-        <x-div-modal id="storePost" classButton="closeModalStorePost">
-            <x-content-modal-post-store/>
-        </x-div-modal>
-
         <x-div-modal id="showPost" classButton="closeModalshowPost">
             <x-content-modal-post-show :user="$user"/>
         </x-div-modal>
