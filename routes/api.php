@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/crop-image', [ApiController::class, 'cropImage']);
+Route::post('/destroy-post', [ApiController::class, 'destroyPost']);
 Route::get('/render-component-post-show', [ApiController::class, 'render']);
