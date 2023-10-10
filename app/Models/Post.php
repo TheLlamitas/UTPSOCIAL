@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Database;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +30,6 @@ class Post extends Model
 
     public function storeImage($request)
     {
-        ini_set('memory_limit', -1);
         $file = $request->file('file');
         $nameFile = Str::uuid().".". $file->extension();
         $image = Image::make($file);
@@ -37,5 +37,32 @@ class Post extends Model
         $imagenPath = public_path('uploads').'/'.$nameFile;
         $image->save($imagenPath);
         return $image;
+    }
+
+    public function destroyPost($post_id) : array
+    {
+        $data = [
+            'status' => false,
+            'message' => '',
+            'data' => []
+        ];
+
+        $post = Post::find($post_id);
+        if ($post) {
+            $imagenPath = public_path('uploads').'/'.$post->photo;
+
+            if (File::exists($imagenPath)) {
+                unlink($imagenPath);
+                $post->delete();
+                $data['status'] = true;
+                $data['message'] = 'Publicación Eliminada.';
+                return $data;
+            }
+        }
+
+        $data['message'] = 'Error al Eliminar Publicación.';
+
+        return $data;
+        
     }
 }
