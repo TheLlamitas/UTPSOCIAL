@@ -7,7 +7,7 @@
                         <x-icons.back/>
                     </button>
                 </div>
-                <h1 id="title" class="text-md font-semibold text-gray-900" id="modal-title">
+                <h1 id="title" class="text-md font-semibold text-gray-900">
                     Crea una nueva publicación
                 </h1>
                 <div id="next" class="hidden">

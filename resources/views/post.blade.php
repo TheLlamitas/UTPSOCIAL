@@ -1,4 +1,7 @@
 <x-layout :titlePage="$user->name">
+    @push('vite')
+        @vite('resources/js/modals.js')
+    @endpush
     <x-div-profile :user="$user" :posts="$posts"/>
     <x-forms.alert/>
     {{-- @error('file')
@@ -60,8 +63,10 @@
         </x-tab-content>
     </div>
     @if (Auth::check())
-        <x-div-modal id="showPost" classButton="closeModalshowPost">
-            <x-content-modal-post-show :user="$user"/>
+        <x-div-modal id="showPost" classButton="closeModalshowPost"/>
+        <x-div-modal id="options-post" idBackdropModal="backdrop-modal">
+            <x-content-modal-more-options/>
         </x-div-modal>
+        <x-div-modal-frame-bottom/>
     @endif
 </x-layout>

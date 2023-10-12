@@ -20,7 +20,7 @@
                         </p>
                     </div>
                     <div class="flex flex-row items-center">
-                            <x-icons.more-options/>
+                            <x-icons.more-options id="more-options"/>
                     </div>
                 </div>
 

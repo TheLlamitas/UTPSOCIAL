@@ -8,7 +8,7 @@
         <title>@isset($titlePage) {{ $titlePage }} @endisset</title>
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
-        @vite('resources/js/modals.js')
+        @stack('vite')
     </head>
     <body class="bg-white h-screen flex flex-col">
         <header class="sm:p-5 px-4 border-b bg-white shadow">
