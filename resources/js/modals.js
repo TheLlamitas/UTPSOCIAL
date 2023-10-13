@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const formData = new FormData();
                 formData.append('post_id', post_id);
                 formData.append('user_id', user_id);
+                formData.append('_method', 'delete');
             
                 fetch('/api/destroy-post', {
                     method: 'POST',
@@ -84,8 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data.message);
                     let textConfirmedAction = document.getElementById('confirmed-action');
                     const FrameBottomModal = document.getElementById('FrameBottomModal');
+                    console.log(FrameBottomModal);
                     textConfirmedAction.textContent = data.message;
                     toggleModal(optionsPost, 'invisible', true);
                     toggleModal(deletePost, 'hidden', false);
