@@ -6,6 +6,12 @@ export function toggleModal(modal, className, addClass) {
     }
 }
 
+export function updateModalClasses(modal, classes) {
+    Object.entries(classes).forEach(([className, shouldAdd]) => {
+        toggleModal(modal, className, shouldAdd);
+    });
+}
+
 export function calculateElapsedTime(createdAt) {
     const now = new Date();
     const postDate = new Date(createdAt);
@@ -47,4 +53,39 @@ export function countCharacter(descriptionTextarea) {
         descriptionTextarea.value = content.substring(0, 191);
         countDescription.textContent = (content.length - 1)+'/191';
     }
+}
+
+export function chargeImage(canvasId, url) {
+    // Cargar la imagen en un objeto de imagen
+    let img = new Image();
+    // Obtener el contexto 2D del canvas
+    let canvas = document.getElementById(canvasId);
+    let ctx = canvas.getContext('2d');
+    
+    img.onload = function() {
+
+        let width;
+        let height;
+
+        if (window.innerWidth <= 710) {
+            // El usuario está en un dispositivo móvil
+            width = 400;
+            height = 400;
+        } else {
+            // El usuario está en una computadora de escritorio
+            width = 704;
+            height = 704;
+        }
+
+        // Establecer el tamaño del canvas al tamaño de la imagen
+        canvas.width = width;
+        canvas.height = height;
+
+        // Dibujar la imagen en el canvas
+        ctx.drawImage(img, 0, 0, width, height);
+    };
+
+    // Establecer la fuente de la imagen en el objeto de imagen
+    img.src = url;
+    canvas.style.display = 'block';
 }

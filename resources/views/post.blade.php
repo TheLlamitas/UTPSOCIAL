@@ -68,5 +68,7 @@
             <x-content-modal-more-options/>
         </x-div-modal>
         <x-div-modal-frame-bottom/>
+        <x-div-modal id="editPost" classButton="closeModalEditPost">
+        </x-div-modal>
     @endif
 </x-layout>
