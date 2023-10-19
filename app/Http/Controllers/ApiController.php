@@ -29,7 +29,7 @@ class ApiController extends Controller
     public function render(Request $request)
     {
         $user = User::find($request->user_id);
-        return View::make('components.content-modal-post-show')->with('user', $user)->render();
+        return View::make('post.content-modal-post-show')->with('user', $user)->render();
     }
 
     public function destroyPost(Request $request) : JsonResponse

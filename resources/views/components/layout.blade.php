@@ -8,6 +8,7 @@
         <title>@isset($titlePage) {{ $titlePage }} @endisset</title>
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
+        @vite('resources/js/modalStorePost.js')
         @stack('vite')
     </head>
     <body class="bg-white h-screen flex flex-col">
@@ -45,7 +46,7 @@
             {{ $slot }}
             @if (Auth::check())
                 <x-div-modal id="storePost" classButton="closeModalStorePost">
-                    <x-content-modal-post-store/>
+                    @include('post.content-modal-post-store')
                 </x-div-modal>
             @endif
         </main>

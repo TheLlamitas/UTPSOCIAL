@@ -28,8 +28,24 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
-        
-        
+    }
 
+    public function edit(Request $request)
+    {
+        $post = Post::find($request->post_id);
+        if ($request->user_id == $post->user_id) {
+            $post->description = $request->description;
+            $post->save();
+            // $data = [
+            //     'id' => $post->id,
+            //     'description' => $request->description
+            // ];
+
+            // Post::saveOrUpdate($data);
+
+            return 'Actializado correctamente!!!';
+        } else {
+            return "En el momento no hay formita";
+        }
     }
 }

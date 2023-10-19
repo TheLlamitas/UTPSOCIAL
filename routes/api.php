@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/crop-image', [ApiController::class, 'cropImage']);
 Route::delete('/destroy-post', [ApiController::class, 'destroyPost']);
 Route::get('/render-component-post-show', [ApiController::class, 'render']);
+Route::post('/edit-post', [PostController::class, 'edit'])->name('editPost');

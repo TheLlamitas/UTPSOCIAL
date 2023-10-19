@@ -1,6 +1,7 @@
 <x-layout :titlePage="$user->name">
     @push('vite')
-        @vite('resources/js/modals.js')
+        @vite('resources/js/modalShowPost.js')
+        @vite('resources/js/modalEditPost.js')
     @endpush
     <x-div-profile :user="$user" :posts="$posts"/>
     <x-forms.alert/>
@@ -64,11 +65,13 @@
     </div>
     @if (Auth::check())
         <x-div-modal id="showPost" classButton="closeModalshowPost"/>
+
         <x-div-modal id="options-post" idBackdropModal="backdrop-modal">
-            <x-content-modal-more-options/>
+            @include('post.content-modal-more-options')
         </x-div-modal>
-        <x-div-modal-frame-bottom/>
+
         <x-div-modal id="editPost" classButton="closeModalEditPost">
+            @include('post.content-modal-post-edit')
         </x-div-modal>
     @endif
 </x-layout>
