@@ -119,14 +119,41 @@ document.addEventListener('DOMContentLoaded', function() {
         optionsPost.setAttribute('data-user-id', userId);
         optionsPost.setAttribute('data-url', url);
         optionsPost.setAttribute('data-description', description);
+
+        // Obtener el valor del campo '_token' del elemento
+        const csrfTokenValue = modalAll.querySelector('input[name="_token"]').value;
         
         modalAll.innerHTML = '';
+
+        console.log(csrfTokenValue);
     
-        fetch('/api/render-component-post-show?user_id='+userId)
+        fetch('/api/render-component-post-show?user_id='+userId+'&post_id='+postId)
         .then(response => response.text())
         .then(html => {
             // Reemplazar el contenido del componente con el nuevo HTML
             modalAll.innerHTML = html;
+            modalAll.querySelector('input[name="_token"]').value = csrfTokenValue;
+            // Obtener el formulario por su ID
+            const form = modalAll.querySelector('#store-comment');
+
+            // Crear un nuevo elemento de entrada
+            const user = document.createElement('input');
+
+            // Crear un nuevo elemento de entrada
+            const post = document.createElement('input');
+
+            // Establecer el nombre y otros atributos del nuevo elemento de entrada
+            user.type = 'hidden';
+            user.name = 'user_id';
+            user.value = userId;
+
+            post.type = 'hidden';
+            post.name = 'post_id';
+            post.value = postId;
+
+            // Agregar el nuevo elemento de entrada al formulario
+            form.appendChild(user);
+            form.appendChild(post);
             const showDescription = modalShowPost.querySelector('#showDescription');
             const classesToUpdateModalAll = {
                 'min-[992px]:max-w-[704px]': false,

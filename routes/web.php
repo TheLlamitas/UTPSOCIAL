@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -34,5 +35,6 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::post('/store', [PostController::class, 'store'])->name('store');
     Route::post('/crop-image', [PostController::class, 'cropImage']);
     Route::get('/{user:username}', [PostController::class, 'index'])->name('post');
+    Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comment.store');
 });
 

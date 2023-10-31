@@ -64,7 +64,9 @@
         </x-tab-content>
     </div>
     @if (Auth::check())
-        <x-div-modal id="showPost" classButton="closeModalshowPost"/>
+        <x-div-modal id="showPost" classButton="closeModalshowPost">
+            @csrf
+        </x-div-modal>
 
         <x-div-modal id="options-post" idBackdropModal="backdrop-modal">
             @include('post.content-modal-more-options')

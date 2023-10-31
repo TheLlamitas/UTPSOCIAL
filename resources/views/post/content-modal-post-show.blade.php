@@ -1,7 +1,4 @@
 <div id="body-modal" class="text-center h-full">
-    <x-forms.form id="show-post" route="#" method="POST" enctype="multipart/form-data">
-        <!-- the first file input -->
-        <input type="hidden" name="user_id" value="{{ $user->id }}">
         <div class="flex w-full h-full">
             <div id="dropzone-container" class="flex items-center justify-center w-full h-full min-[576px]:max-w-[400px] min-[992px]:max-w-[704px] min-[992px]:max-h-[704px]">
                 <canvas id="canvas-show" style="display: none;"></canvas>
@@ -42,7 +39,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex flex-col mt-auto">
+                    <x-forms.form id="store-comment" route="{{ route('comment.store', ['post' => $post, 'user' => $user]) }}" method="POST">
+                        <div class="mt-2">
+                            <div id="contentEmoji" class="flex justify-between border-t border-gray-200 m-1 mr-2 items-center">
+                                <div class="p-2">
+                                    <x-icons.emoji id="openEmoji"/>
+                                </div>
+                                <textarea id="comment" name="comment" rows="1" class="resize-none block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 border-none focus:outline-none focus:ring-0 border-transparent" placeholder="Agrega un comentario..."></textarea>
+                                <input type="submit" value="Publicar" class="text-sky-500 hover:text-sky-700 cursor-pointer font-semibold"/>
+                            </div>
+                            <div id="emoji" class="hidden"></div>
+                        </div>
+                    </x-forms.form>
+                </div>
             </div>
         </div>
-    </x-forms.form>
 </div>
