@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::post('/crop-image', [ApiController::class, 'cropImage']);
 Route::delete('/destroy-post', [ApiController::class, 'destroyPost']);
 Route::get('/render-component-post-show', [ApiController::class, 'render']);
 Route::post('/edit-post', [PostController::class, 'edit'])->name('editPost');
+Route::post('/likes', [LikesController::class, 'likes'])->name('likes');

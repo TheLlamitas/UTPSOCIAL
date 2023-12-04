@@ -57,4 +57,10 @@ class User extends Authenticatable
     {
         return $this->persist(User::class, $data);
     }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
 }
